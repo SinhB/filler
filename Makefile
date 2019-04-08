@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/05 14:43:58 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/08 19:03:56 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,11 @@ OBJ_PATH	= objs
 
 INC_PATH	= includes
 
+LIB			= ./libft
 LDFLAGS		= -Llibft
 LDLIBS		= -lft
 
-SRC_NAME 	=
-				filler.c							\
+SRC_NAME 	=		filler.c							\
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -73,35 +73,38 @@ re				: 	fclean all
 
 # Compilation rules
 $(OBJ_PATH)		:
-					@mkdir $(OBJ_PATH) 2> /dev/null || true
+					# @mkdir $(OBJ_PATH) 2> /dev/null || true
 
 
 $(NAME)			:	$(OBJ)
+					@make -C $(LIB)
 					@echo "-------------------------------------------------------------"
 					@echo "|                  Debut de la compilation                  |"
 					@echo "|                            42                             |"
-					@echo "|                          filler                            |"
+					@echo "|                          filler                           |"
 					@echo "|                       compilation :                       |"
 					@echo "|                                                           |"
-					#@ar rc $(NAME) $^
-					#@ranlib $(NAME)
-					@echo "|                       make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)                     |"
+					@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $(SRC) $(LIB)/libft.a
+					@echo "|                       make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)             |"
 					@echo "-------------------------------------------------------------"
 
-$(OBJ_PATH)/%.o: 	$(SRC_PATH)/%.c
-					$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
+					# make -C $(LIB)
+					# $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $(NAME) $< -I $(LIB)
 
 # Clean rules
 clean			:
+					@cd libft && $(MAKE) clean
 					@echo "-------------------------------------------------------------"
 					@rm -rf $(OBJ_PATH)
 					@echo "|                    Removes all .o & $(OBJ_PATH)/$(LOG_GREEN) ✓ $(LOG_NOCOLOR) !            |"
 					@echo "-------------------------------------------------------------"
 
 fclean			: 	clean
+					@cd libft && $(MAKE) fclean
 					@echo "-------------------------------------------------------------"
 					@rm -f $(NAME)
-					@echo "|                    Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR) !                    |"
+					@echo "|                    Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR) !            |"
 					@echo "-------------------------------------------------------------"
 norme:
 					@norminette $(SRC)
