@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/08 19:03:56 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/09 17:49:54 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ OBJ_PATH	= objs
 
 INC_PATH	= includes
 
-LIB			= ./libft
+LIB			= ./libft/
 LDFLAGS		= -Llibft
 LDLIBS		= -lft
 
 SRC_NAME 	=		filler.c							\
-
+					handle_errors.c						\
+					get_player_number.c					\
+					get_map.c							\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -67,13 +69,13 @@ LOG_WHITE		= \033[1;37m
 # RULES
 
 # Main rules
-all				: 	$(OBJ_PATH) $(NAME)
+all				:  $(OBJ_PATH) $(NAME)
 
 re				: 	fclean all
 
 # Compilation rules
 $(OBJ_PATH)		:
-					# @mkdir $(OBJ_PATH) 2> /dev/null || true
+				 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 
 
 $(NAME)			:	$(OBJ)
@@ -84,13 +86,12 @@ $(NAME)			:	$(OBJ)
 					@echo "|                          filler                           |"
 					@echo "|                       compilation :                       |"
 					@echo "|                                                           |"
-					@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $(SRC) $(LIB)/libft.a
+					@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $^ $(LIB)libft.a
 					@echo "|                       make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)             |"
 					@echo "-------------------------------------------------------------"
 
 $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
-					# make -C $(LIB)
-					# $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $(NAME) $< -I $(LIB)
+					$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # Clean rules
 clean			:
