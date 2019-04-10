@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/09 17:49:54 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/10 18:12:40 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,11 @@ LDLIBS		= -lft
 
 SRC_NAME 	=		filler.c							\
 					handle_errors.c						\
-					get_player_number.c					\
-					get_map.c							\
-
+					get_data.c							\
+					init_map.c							\
+					parse_map.c							\
+					free.c								\
+					
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))

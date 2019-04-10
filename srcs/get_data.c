@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_player_number.c                                :+:      :+:    :+:   */
+/*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 17:19:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/09 17:47:39 by yabecret         ###   ########.fr       */
+/*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
+/*   Updated: 2019/04/10 17:52:21 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int	get_map_size(t_filler *filler)
+{
+	char	*line;
+	int		i;
+	int		error;
+
+	i = 0;
+	error = 1;
+	line = (void *)0;
+	get_next_line(0, &line);
+	if (ft_strncmp(line, "Plateau ", 8))
+		error = 0;
+	if (!(filler->map.height = ft_atoi(&line[8])))
+		error = 0;
+	i = ft_cntdigit(filler->map.height) + 1;
+	if (!(filler->map.width = ft_atoi(&line[8 + i])))
+		error = 0;
+	i += ft_cntdigit(filler->map.width);
+	if (line[8 + i] != ':')
+		error = 0;
+	ft_memdel((void**)&line);
+	return (error);
+}
 
 int	get_player_number(t_filler *filler)
 {
