@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/11 16:53:48 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/11 17:51:40 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LDLIBS		= -lft
 SRC_NAME 	=		filler.c							\
 					handle_errors.c						\
 					get_data.c							\
-					init_map.c							\
+					init.c							\
 					parse_map.c							\
 					parse_piece.c						\
 					free.c								\
