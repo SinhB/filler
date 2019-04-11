@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/10 17:52:21 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/11 02:54:45 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	get_map_size(t_filler *filler)
 	error = 1;
 	line = (void *)0;
 	get_next_line(0, &line);
+	filler->m_features = ft_strdup(line);
 	if (ft_strncmp(line, "Plateau ", 8))
 		error = 0;
 	if (!(filler->map.height = ft_atoi(&line[8])))

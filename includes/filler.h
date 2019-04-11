@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/10 18:11:08 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/11 02:59:58 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct	s_filler
 	int			p_nb;
 	int			size;
 	int			init;
+	char		*m_features;
+	char		*p_features;
 	t_map		map;
 	t_piece		piece;
 }				t_filler;
@@ -61,6 +63,7 @@ int				get_player_number(t_filler *filler);
 int				init_map(t_filler *filler);
 int				parse_map(t_filler *filler);
 int				errors(int i);
+int				check_features(t_filler *filler, char *line, int i);
 
 void			free_tab(char **tab, int y);
 
