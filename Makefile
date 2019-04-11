@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/11 01:41:55 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/11 16:53:48 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_NAME 	=		filler.c							\
 					get_data.c							\
 					init_map.c							\
 					parse_map.c							\
+					parse_piece.c						\
 					free.c								\
 					check.c								\
 

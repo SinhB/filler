@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/11 03:02:01 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/11 17:14:59 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	start(t_filler *filler)
 	while(1)
 	{
 		if (!parse_map(filler))
+			break;
+		if (!parse_piece(filler))
 			break;
 	}
 	return (1);

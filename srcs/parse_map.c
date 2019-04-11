@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:57:07 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/11 03:08:08 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/11 17:45:15 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,33 @@ void	print_map(t_filler *filler)
 	}
 }
 
-int	parse_map(t_filler *filler)
+int	parse_m_features(t_filler *filler)
 {
-	char	*line;
-	int		i;
-	int		error;
+	char *line;
 
-	i = 0;
-	error = 1;
-	if (filler->init == 0)
+	line = NULL;
+	if (filler->init_m == 0)
 	{
 		get_next_line(0, &line);
 		if (!check_features(filler, line, 1))
 		{
-			//ft_memdel((void**)&line);
-			return (errors(1));
+			ft_memdel((void**)&line);
+			return (0);
 		}
 	}
+	if (line)
+		ft_memdel((void**)&line);
+	return (1);
+}
+
+int	parse_map(t_filler *filler)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	if (!parse_m_features(filler))
+		return (errors(3));
 	get_next_line(0, &line);
 	while (i < filler->map.height)
 	{
@@ -51,7 +61,7 @@ int	parse_map(t_filler *filler)
 		//ft_memdel((void**)&line);
 		i++;
 	}
-	filler->init = 0;
+	filler->init_m = 0;
 	print_map(filler);
 	return (1);
 }
