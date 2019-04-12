@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 15:58:39 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 17:08:20 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,15 @@ typedef struct	s_map
 
 typedef struct	s_filler
 {
-	int			p_nb;
+	char		me;
+	char		bot;
 	int			size;
 	int			init_m;
 	char		*m_features;
 	char		*p_features;
 	t_map		map;
 	t_piece		piece;
+	t_point		point;
 }				t_filler;
 
 /*

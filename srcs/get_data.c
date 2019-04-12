@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/11 17:32:54 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:42:53 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int	get_map_size(t_filler *filler)
 	return (error);
 }
 
+void	p_nb(t_filler *filler, char me, char bot)
+{
+	filler->me = me;
+	filler->bot = bot;
+}
+
 int	get_player_number(t_filler *filler)
 {
 	char	*line;
@@ -83,10 +89,8 @@ int	get_player_number(t_filler *filler)
 		error = 0;
 	if (line[13 + i] != ']')
 		error = 0;
-	if (line[10] == '1')
-		filler->p_nb = 1;
-	else if (line[10] == '2')
-		filler->p_nb = 2;
+	if (line[10] == '1' || line[10] == '2')
+		line[10] == 1 ? p_nb(filler, 'O', 'X') : p_nb(filler, 'X', 'O');
 	else
 		error = 0;
 	ft_memdel((void**)&line);

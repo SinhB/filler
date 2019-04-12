@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:57:07 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 15:58:17 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:19:48 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_m_features(t_filler *filler)
 
 	line = NULL;
 	get_next_line(0, &line);
-	if (!check_features(filler, line, 1))
+	if (ft_strcmp(filler->m_features, line))
 	{
 		ft_memdel((void**)&line);
 		return (0);
@@ -55,7 +55,7 @@ int	parse_map(t_filler *filler)
 	get_next_line(0, &line);
 	ft_memdel((void**)&line);
 	fill_map(filler);
-	filler->init_m = 0;
+	filler->init_m = 1;
 	print_map(filler);
 	return (1);
 }
