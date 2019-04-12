@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 17:08:20 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 19:30:49 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct	s_point
 {
+	int			i;
 	int			x;
 	int			y;
 	int			min_dist;
