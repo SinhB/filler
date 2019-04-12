@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 12:13:04 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 15:58:39 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,16 @@ int				fill_piece(t_filler *filler);
 **------------------------------------ ERRORS ----------------------------------
 */
 
-int				errors(int i);
+int				errors(t_filler *filler, int i);
 
 /*
 **------------------------------------ CHECK -----------------------------------
 */
 
 int				check_features(t_filler *filler, char *line, int i);
+int				check_p_line(t_filler *filler, char *line);
+
+
 
 /*
 **------------------------------------ FREE ------------------------------------

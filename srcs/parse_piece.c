@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:48:12 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 12:10:43 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 15:50:55 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	print_piece(t_filler *filler)
 int		parse_piece(t_filler *filler)
 {
 	if (!get_piece_size(filler))
-		return (errors(2));
+		return (errors(filler, 2));
 	init_piece(filler);
-	fill_piece(filler);
+	if (!fill_piece(filler))
+		return (errors(filler, 4));
 	print_piece(filler);
 	return (1);
 }

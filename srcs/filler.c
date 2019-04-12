@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 12:27:03 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 15:57:57 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int main(void)
 
 	ft_bzero(&filler, sizeof(filler));
 	if (!(get_player_number(&filler)))
-		return (errors(0));
-	if (!(get_map_size(&filler)))
-		return (errors(1));
-	init_map(&filler);
+		return (errors(&filler, 0));
 	start(&filler);
 	free_tab(filler.map.board, filler.map.height);
 return (0);

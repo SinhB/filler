@@ -6,31 +6,11 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:58:53 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 12:13:34 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 15:59:03 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-void	palloc_case(t_filler *filler)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < filler->piece.height)
-	{
-		j = 0;
-		while (filler->piece.square[i][j])
-		{
-			if (filler->piece.square[i][j] == '*')
-				filler->piece.cnt += 1;
-			j++;
-		}
-		i++;
-	}
-	filler->piece.p = (t_point*)palloc(sizeof(t_point) * filler->piece.cnt);
-}
 
 void	get_point_pos(t_filler *filler)
 {
@@ -66,13 +46,13 @@ int		fill_piece(t_filler *filler)
 	while (i < filler->piece.height)
 	{
 		get_next_line(0, &line);
-		while (ft_isdigit(*line) || ft_isblank(*line))
-			line++;
+		if (!check_p_line(filler, line))
+			return (0);
 		ft_strcpy(filler->piece.square[i], &*line);
 		ft_memdel((void**)&line);
 		i++;
 	}
-	palloc_case(filler);
+	filler->piece.p = (t_point*)palloc(sizeof(t_point) * filler->piece.cnt);
 	ft_dprintf(2, "cnt :%d\n", filler->piece.cnt);
 	get_point_pos(filler);
 	ft_dprintf(2, "done\n");
