@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/11 17:14:59 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 12:27:03 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	start(t_filler *filler)
 			break;
 		if (!parse_piece(filler))
 			break;
+		free_piece(filler);
 	}
 	return (1);
 }
@@ -34,8 +35,6 @@ int main(void)
 	if (!(get_map_size(&filler)))
 		return (errors(1));
 	init_map(&filler);
-//	ft_printf("height : %d\n", filler.map.height);
-//	ft_printf("width : %d\n", filler.map.width);
 	start(&filler);
 	free_tab(filler.map.board, filler.map.height);
 return (0);

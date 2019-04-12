@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:57:07 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/11 17:45:15 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/12 12:12:13 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,12 @@ int	parse_m_features(t_filler *filler)
 int	parse_map(t_filler *filler)
 {
 	char	*line;
-	int		i;
 
-	i = 0;
 	if (!parse_m_features(filler))
 		return (errors(3));
 	get_next_line(0, &line);
-	while (i < filler->map.height)
-	{
-		get_next_line(0, &line);
-		while (ft_isdigit(*line) || ft_isblank(*line))
-			line++;
-		ft_strcpy(filler->map.board[i], &*line);
-		//ft_memdel((void**)&line);
-		i++;
-	}
+	ft_memdel((void**)&line);
+	fill_map(filler);
 	filler->init_m = 0;
 	print_map(filler);
 	return (1);
