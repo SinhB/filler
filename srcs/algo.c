@@ -6,101 +6,156 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 16:43:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 20:12:24 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/13 22:14:06 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	check_edge(t_filler *filler, int y, int x)
+int	check_edge(t_filler *filler, t_point *p)
 {
-	if (filler->map.board[y - 1][x] && filler->map.board[y - 1][x] == '.')
+	if ((p->y - 1 > 0) && filler->map.board[p->y - 1][p->x] == '.')
 		return (1);
-	if (filler->map.board[y + 1][x] && filler->map.board[y + 1][x] == '.')
+	if ((p->y + 1 < filler->map.height) && filler->map.board[p->y + 1][p->x] == '.')
 		return (1);
-	if (filler->map.board[y][x + 1] && filler->map.board[y][x + 1] == '.')
+	if ((p->x + 1 < filler->map.width) && filler->map.board[p->y][p->x + 1] == '.')
 		return (1);
-	if (filler->map.board[y][x - 1] && filler->map.board[y][x - 1] == '.')
-			return (1);
+	if ((p->x - 1 > 0) && filler->map.board[p->y][p->x - 1] == '.')
+		return (1);
 	return (0);
 }
 
-int	calc_min_dist(t_filler *filler, int y, iny x, int j, int i)
+int	print_pos(t_filler *filler)
 {
 	int i;
-	int j;
-	int x1;
-	int y1;
+	int cnt;
+	int x;
+	int y;
 
 	i = 0;
+	ft_dprintf(2, "piece.cnt :%d\n", filler->piece.cnt);
 	while (i < filler->piece.cnt)
 	{
-		if (filler->piece.point[i].good)
+		if (filler->piece.p[i].min <= filler->point.min)
+			cnt = i;
+		i++;
+	}
+	x = filler->point.x - filler->piece.p[cnt].x;
+	y = filler->point.y - filler->piece.p[cnt].y;
+	ft_dprintf(2, "p.x :%d\n", filler->point.x);
+	ft_dprintf(2, "p.y :%d\n", filler->point.y);
+	ft_dprintf(2, "piece.p[%d].x :%d\n", cnt, filler->piece.p[cnt].x);
+	ft_dprintf(2, "piece.p[%d].y :%d\n", cnt, filler->piece.p[cnt].y);
+	free_piece(&filler->piece);
+//	free_point(filler->point);
+	ft_printf("%d %d\n", x, y);
+	return (1);
+}
+
+double	calc_min(t_filler *filler, t_point *t, t_point *p, t_point *ad)
+{
+	int 	i;
+	int 	x1;
+	int 	y1;
+	double	min;
+	double	res;
+
+	i = 0;
+	min = filler->point.min;
+	while (i < filler->piece.cnt)
+	{
+		y1 = (filler->piece.p[i].y - p->y + t->y);
+		x1 = (filler->piece.p[i].x - p->x + t->x);
+		res = pow((ad->x - x1), 2);
+		res += pow((ad->y - y1), 2);
+		res = sqrt(res);
+		min = res < min ? res : min;
+		i++;
+	}
+	return (min);
+}
+
+double	calc_min_dist(t_filler *filler, t_point *tracker, t_point *ad)
+{
+	int 	i;
+	t_point p;
+	double 	min;
+	double 	res;
+
+	i = 0;
+	min = filler->point.min;
+	ft_bzero(&p, sizeof(p));
+	while (i < filler->piece.cnt)
+	{
+		if (filler->piece.p[i].good)
 		{
-			j = 0;
-			while (j < filler->piece.cnt)
-			{
-				x1 = ft_pow((i - (filler->piece.point[i].x - x)), 2);
-				y1 = ft_pow((j - (filler->piece.point[i].y - y)), 2);
-				filler->piece.point[i].min_dist = ft_sqrt(x1 + y1);
-				j++;
-			}
+			p.x = filler->piece.p[i].x;
+			p.y = filler->piece.p[i].y;
+			res = calc_min(filler, tracker, &p, ad);
+			if (res < filler->piece.p[i].min)
+				filler->piece.p[i].min = res;
+			min = res < min ? res : min;
 		}
 		i++;
 	}
 	return (min);
 }
 
-int	get_min_dist(t_filler *filler, int y, int x)
+int	get_min_dist(t_filler *filler, t_point *tracker)
 {
-	int j;
-	int i;
-	int min;
+	double 	min;
+	t_point ad;
 
-	j = 0;
 	min = 0;
-	while (j < filler->map.height)
+	ad.y = 0;
+	while (ad.y < filler->map.height)
 	{
-		i = 0;
-		while (i < filler->map.width)
+		ad.x = 0;
+		while (ad.x < filler->map.width)
 		{
-			if (filler->map.board[j][i] == filler->bot)
+			if (filler->map.board[ad.y][ad.x] == filler->ad)
 			{
-				min = calc_min_dist(filler, y, x, j, i);
-				if (min < filler->point.min_dist)
+				if (check_edge(filler, &ad))
+					min = calc_min_dist(filler, tracker, &ad);
+				if (min < filler->point.min)
 				{
-					filler->point.x = x;
-					filler->point.y = y;
-					filler->point.min_dist = min;
+					filler->point.x = tracker->x;
+					filler->point.y = tracker->y;
+					filler->point.min = min;
 				}
-			}
-			i++;
+			 }
+			ad.x++;
 		}
-		j++;
+		ad.y++;
 	}
 	return (1);
 }
 
 int	algo(t_filler *filler)
 {
-	int y;
-	int x;
+	t_point tracker;
 
-	y = 0;
-	while (y< filler->map.height)
+	tracker.y = 0;
+	while (tracker.y < filler->map.height)
 	{
-		x = 0;
-		while (x < filler->map.width)
+		tracker.x = 0;
+		while (tracker.x < filler->map.width)
 		{
-			if (filler->map.board[y][x] == filler->me)
+			if (filler->map.board[tracker.y][tracker.x] == filler->me)
 			{
-				if (check_edge(filler, y, x))
-					if (check_p_pos(filler, y, x))
-						get_min_dist(filler, y, x);
+				if (check_edge(filler, &tracker))
+				{
+					if (check_p_pos(filler, &tracker))
+					{
+						get_min_dist(filler, &tracker);
+						tracker.x++;
+					}
+				}
 			}
-			x++;
+			tracker.x++;
 		}
-		y++;
+		tracker.y++;
 	}
+	print_pos(filler);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/12 12:16:03 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/13 20:39:14 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,11 @@ SRC_NAME 	=		filler.c							\
 					handle_errors.c						\
 					get_data.c							\
 					init.c								\
-					parse_map.c							\
-					fill_map.c							\
-					parse_piece.c						\
-					fill_piece.c						\
+					handle_map.c						\
+					handle_piece.c						\
 					free.c								\
 					check.c								\
+					algo.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -92,7 +91,7 @@ $(NAME)			:	$(OBJ)
 					@echo "|                          filler                           |"
 					@echo "|                       compilation :                       |"
 					@echo "|                                                           |"
-					@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $^ $(LIB)libft.a
+					@$(CC) $(CFLAGS) $(CPPFLAGS) -g -o $@ $^ $(LIB)libft.a
 					@echo "|                       make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)             |"
 					@echo "-------------------------------------------------------------"
 

@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 16:42:53 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/13 20:02:41 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	get_piece_size(t_filler *filler)
 	error = 1;
 	line = (void *)0;
 	get_next_line(0, &line);
-	filler->p_features = ft_strdup(line);
 	if (ft_strncmp(line, "Piece ", 6))
 		error = 0;
 	if (!(filler->piece.height = ft_atoi(&line[6])))
@@ -59,13 +58,15 @@ int	get_map_size(t_filler *filler)
 	if (line[8 + i] != ':')
 		error = 0;
 	ft_memdel((void**)&line);
+	filler->size = filler->map.width * filler->map.height;
+	filler->point.min = filler->size;
 	return (error);
 }
 
-void	p_nb(t_filler *filler, char me, char bot)
+void	p_nb(t_filler *filler, char me, char ad)
 {
 	filler->me = me;
-	filler->bot = bot;
+	filler->ad = ad;
 }
 
 int	get_player_number(t_filler *filler)
@@ -90,7 +91,7 @@ int	get_player_number(t_filler *filler)
 	if (line[13 + i] != ']')
 		error = 0;
 	if (line[10] == '1' || line[10] == '2')
-		line[10] == 1 ? p_nb(filler, 'O', 'X') : p_nb(filler, 'X', 'O');
+		line[10] == '1' ? p_nb(filler, 'O', 'X') : p_nb(filler, 'X', 'O');
 	else
 		error = 0;
 	ft_memdel((void**)&line);

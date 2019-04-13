@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 19:30:49 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/13 22:14:13 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FILLER_H
 
 # include "../libft/includes/libft.h"
+# include <math.h>
 
 # define P_X	01111000	// x
 # define P_O	01101111	// o
@@ -25,7 +26,7 @@ typedef struct	s_point
 	int			i;
 	int			x;
 	int			y;
-	int			min_dist;
+	double		min;
 	int			good;
 }				t_point;
 
@@ -33,8 +34,6 @@ typedef struct	s_piece
 {
 	int			width;
 	int			height;
-	int			x;
-	int			y;
 	int			cnt;
 	t_point		*p;
 	char 		**square;
@@ -52,15 +51,20 @@ typedef struct	s_map
 typedef struct	s_filler
 {
 	char		me;
-	char		bot;
+	char		ad;
 	int			size;
 	int			init_m;
 	char		*m_features;
-	char		*p_features;
 	t_map		map;
 	t_piece		piece;
 	t_point		point;
 }				t_filler;
+
+/*
+**------------------------------------- ALGO -----------------------------------
+*/
+
+int				algo(t_filler *filler);
 
 /*
 **----------------------------------- GET_DATA ---------------------------------
@@ -117,14 +121,16 @@ int				errors(t_filler *filler, int i);
 
 int				check_features(t_filler *filler, char *line, int i);
 int				check_p_line(t_filler *filler, char *line);
-
-
+int				check_p_pos(t_filler *filler, t_point *tracker);
 
 /*
 **------------------------------------ FREE ------------------------------------
 */
 
-void			free_tab(char **tab, int y);
-void			free_piece(t_filler *filler);
+void			*free_tab(char ***tab);
+void			free_piece(t_piece *piece);
+void			free_point(t_point *point);
+void			free_map(t_map *map);
+void			free_struct(t_filler *filler);
 
 #endif

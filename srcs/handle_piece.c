@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_piece.c                                       :+:      :+:    :+:   */
+/*   handle_piece.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 11:58:53 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/12 15:59:03 by yabecret         ###   ########.fr       */
+/*   Created: 2019/04/13 20:27:09 by yabecret          #+#    #+#             */
+/*   Updated: 2019/04/13 20:35:41 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	get_point_pos(t_filler *filler)
 			{
 				filler->piece.p[cnt].x = j;
 				filler->piece.p[cnt].y = i;
+				filler->piece.p[cnt].min = filler->point.min;
 				cnt++;
 			}
 			j++;
@@ -49,18 +50,21 @@ int		fill_piece(t_filler *filler)
 		if (!check_p_line(filler, line))
 			return (0);
 		ft_strcpy(filler->piece.square[i], &*line);
-		ft_memdel((void**)&line);
+		if (line)
+			ft_memdel((void**)&line);
 		i++;
 	}
 	filler->piece.p = (t_point*)palloc(sizeof(t_point) * filler->piece.cnt);
-	ft_dprintf(2, "cnt :%d\n", filler->piece.cnt);
 	get_point_pos(filler);
-	ft_dprintf(2, "done\n");
-	// while (i < filler->piece.cnt)
-	// {
-	// 	ft_dprintf(2, "x :%d\n", filler->piece.p[i].x);
-	// 	ft_dprintf(2, "y :%d\n", filler->piece.p[i].y);
-	// 	i++;
-	// }
+	return (1);
+}
+
+int		parse_piece(t_filler *filler)
+{
+	if (!get_piece_size(filler))
+		return (errors(filler, 2));
+	init_piece(filler);
+	if (!fill_piece(filler))
+		return (errors(filler, 4));
 	return (1);
 }
