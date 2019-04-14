@@ -1,6 +1,5 @@
-seed = 4288
-O: error on input
+seed = 9163
 ./yabecret.filler: Segfault at 0
-players/champely.filler won
+./yabecret.filler won
 Score:
 0AGAINST0

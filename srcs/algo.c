@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 16:43:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 22:14:06 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/14 02:03:36 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	print_pos(t_filler *filler)
 	ft_dprintf(2, "p.y :%d\n", filler->point.y);
 	ft_dprintf(2, "piece.p[%d].x :%d\n", cnt, filler->piece.p[cnt].x);
 	ft_dprintf(2, "piece.p[%d].y :%d\n", cnt, filler->piece.p[cnt].y);
-	free_piece(&filler->piece);
-//	free_point(filler->point);
 	ft_printf("%d %d\n", x, y);
 	return (1);
 }
@@ -134,8 +132,10 @@ int	get_min_dist(t_filler *filler, t_point *tracker)
 int	algo(t_filler *filler)
 {
 	t_point tracker;
+	int		end;
 
 	tracker.y = 0;
+	end = 0;
 	while (tracker.y < filler->map.height)
 	{
 		tracker.x = 0;
@@ -147,6 +147,7 @@ int	algo(t_filler *filler)
 				{
 					if (check_p_pos(filler, &tracker))
 					{
+						end = 1;
 						get_min_dist(filler, &tracker);
 						tracker.x++;
 					}
@@ -157,5 +158,7 @@ int	algo(t_filler *filler)
 		tracker.y++;
 	}
 	print_pos(filler);
-	return (1);
+	free_piece(&filler->piece);
+	free_map(&filler->map);
+	return (end);
 }

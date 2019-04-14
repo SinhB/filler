@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 20:47:32 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/14 02:11:33 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	start(t_filler *filler)
 		if (!parse_piece(filler))
 			break;
 		ft_dprintf(2, "piece done\n");
-		algo(filler);
+		if (!algo(filler))
+			ft_dprintf(2, "fini!!!\n");
 		ft_dprintf(2, "algo done\n");
 	}
 	return (1);

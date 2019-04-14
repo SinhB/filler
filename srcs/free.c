@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:34:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 22:14:27 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/14 02:04:30 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,11 @@ void	*free_tab(char ***tab)
 
 void	free_map(t_map *map)
 {
-	ft_bzero(&map, sizeof(t_map));
-	free_tab(&map->board);
-	free(map);
-}
-
-void	free_point(t_point *point)
-{
-	ft_dprintf(2, "free point....\n");
-	ft_bzero(&point, sizeof(t_point));
-	//free(&point);
-	ft_dprintf(2, "free point done....\n");
+	int i;
+	i = 0;
+	while (i < map->height)
+		free(map->board[i++]);
+	map->board = NULL;
 }
 
 void	free_piece(t_piece *piece)
@@ -54,13 +48,14 @@ void	free_piece(t_piece *piece)
 	int i;
 
 	i = 0;
-	ft_dprintf(2, "free piece....\n");
+	while (i < piece->height)
+		free(piece->square[i++]);
+	piece->square = NULL;
 	piece->cnt = 0;
 	piece->width = 0;
 	piece->height = 0;
-	free_point(piece->p);
-	free(piece->square);
-	//free(&piece);
+	free(piece->p);
+	piece->p = NULL;
 }
 
 void	free_struct(t_filler *filler)

@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 20:02:41 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/14 02:25:52 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_piece_size(t_filler *filler)
 	i += ft_cntdigit(filler->piece.width);
 	if (line[6 + i] != ':')
 		error = 0;
-	ft_memdel((void**)&line);
+	ft_dprintf(2, "line : %s\n", line);
 	return (error);
 }
 
@@ -46,6 +46,7 @@ int	get_map_size(t_filler *filler)
 	error = 1;
 	line = (void *)0;
 	get_next_line(0, &line);
+	ft_dprintf(2, "line : %s\n", line);
 	filler->m_features = ft_strdup(line);
 	if (ft_strncmp(line, "Plateau ", 8))
 		error = 0;

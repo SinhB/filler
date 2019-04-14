@@ -6,11 +6,29 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 20:27:09 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 20:35:41 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/14 02:08:28 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int	check_p_line(t_filler *filler, char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != '.' && line[i] != '*')
+			return (0);
+		if (line[i] == '*')
+			filler->piece.cnt++;
+		i++;
+	}
+	if (i != filler->piece.width)
+		return (0);
+	return (1);
+}
 
 void	get_point_pos(t_filler *filler)
 {
@@ -54,8 +72,6 @@ int		fill_piece(t_filler *filler)
 			ft_memdel((void**)&line);
 		i++;
 	}
-	filler->piece.p = (t_point*)palloc(sizeof(t_point) * filler->piece.cnt);
-	get_point_pos(filler);
 	return (1);
 }
 
@@ -66,5 +82,7 @@ int		parse_piece(t_filler *filler)
 	init_piece(filler);
 	if (!fill_piece(filler))
 		return (errors(filler, 4));
+	filler->piece.p = (t_point*)palloc(sizeof(t_point) * filler->piece.cnt);
+	get_point_pos(filler);
 	return (1);
 }
