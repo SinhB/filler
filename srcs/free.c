@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:34:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 17:58:13 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 19:32:36 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void	free_piece(t_piece *piece)
 	while (i < piece->height)
 		free(piece->square[i++]);
 	free(piece->square);
+	free(piece->p);
+	piece->p = NULL;
 	piece->square = NULL;
 	piece->cnt = 0;
 	piece->width = 0;
 	piece->height = 0;
-	free(piece->p);
-	piece->p = NULL;
 }
 
 void	free_struct(t_filler *filler)

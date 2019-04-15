@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 16:43:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 17:17:36 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 21:58:46 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,30 @@ int	print_pos(t_filler *filler)
 	int y;
 
 	i = 0;
-//	ft_dprintf(2, "piece.cnt :%d\n", filler->piece.cnt);
-	while (i < filler->piece.cnt)
+	ft_dprintf(2, "piece.cnt :%d\n", filler->piece.cnt);
+/*	while (i < filler->piece.cnt)
 	{
+		ft_dprintf(2, "filler->piece.p[i].min = %.2f\n", filler->piece.p[i].min);
 		if (filler->piece.p[i].min <= filler->point.min)
 			cnt = i;
 		i++;
+	}*/
+	ft_dprintf(2, "p.x :%d\n", filler->point.x);
+	ft_dprintf(2, "p.y :%d\n", filler->point.y);
+	while (i < filler->piece.cnt)
+	{
+		if (is_good(filler, i, &filler->piece.p[i], &filler->point))
+			if (filler->piece.p[i].min <= filler->point.min)
+				cnt = i;
+		i++;
 	}
+	ft_dprintf(2, "i = %d\n", i);
 	x = filler->point.x - filler->piece.p[cnt].x;
 	y = filler->point.y - filler->piece.p[cnt].y;
-	// ft_dprintf(2, "p.x :%d\n", filler->point.x);
-	// ft_dprintf(2, "p.y :%d\n", filler->point.y);
-	// ft_dprintf(2, "piece.p[%d].x :%d\n", cnt, filler->piece.p[cnt].x);
-	// ft_dprintf(2, "piece.p[%d].y :%d\n", cnt, filler->piece.p[cnt].y);
-	ft_printf("%d %d\n", x, y);
+	ft_dprintf(2, "piece.p[%d].x :%d\n", cnt, filler->piece.p[cnt].x);
+	ft_dprintf(2, "piece.p[%d].y :%d\n", cnt, filler->piece.p[cnt].y);
+	ft_dprintf(2, "%d %d\n", y, x);
+	ft_printf("%d %d\n", y, x);
 	return (1);
 }
 
@@ -136,6 +146,7 @@ int	algo(t_filler *filler)
 
 	end = 0;
 	tracker.y = 0;
+	ft_dprintf(2, "algo..\n");
 	while (tracker.y < filler->map.height)
 	{
 		tracker.x = 0;
@@ -149,9 +160,12 @@ int	algo(t_filler *filler)
 					{
 						end = 1;
 						get_min_dist(filler, &tracker);
-						tracker.x++;
 					}
+					else
+						tracker.x++;
 				}
+				else
+					tracker.x++;
 			}
 			tracker.x++;
 		}

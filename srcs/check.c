@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 16:53:54 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 21:54:21 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ int	check_p_pos(t_filler *filler, t_point *tracker)
 {
 	int i;
 	t_point p;
+	int		good;
 
 	i = 0;
 	while (i < filler->piece.cnt)
 	{
 		p.x = filler->piece.p[i].x;
 		p.y = filler->piece.p[i].y;
-		filler->piece.p[i].good = is_good(filler, i, &p, tracker);
+		good = is_good(filler, i, &p, tracker);
+		filler->piece.p[i].good = good ? 1 : 0;
 		i++;
 	}
 	return (check_good(filler));

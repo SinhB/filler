@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/14 01:45:29 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 21:47:36 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int				errors(t_filler *filler, int i);
 int				check_features(t_filler *filler, char *line, int i);
 int				check_p_line(t_filler *filler, char *line);
 int				check_p_pos(t_filler *filler, t_point *tracker);
+int				is_good(t_filler *filler, int j, t_point *p, t_point *t);
 
 /*
 **------------------------------------ FREE ------------------------------------

@@ -1,5 +1,7 @@
-seed = 2760
-./yabecret.filler: Segfault at 0
-players/champely.filler won
+seed = 5182
+X: error on input
+O: error on input
+./yabecret.filler: Segfault at 27
+./yabecret.filler won
 Score:
-0AGAINST0
+27AGAINST0
