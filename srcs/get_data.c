@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 17:22:16 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:30:11 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	get_piece_size(t_filler *filler)
 	error = 1;
 	line = NULL;
 	get_next_line(0, &line);
+	ft_dprintf(2, "%s\n", line);
 	if (ft_strncmp(line, "Piece ", 6))
 		error = 0;
 	if (!(filler->piece.height = ft_atoi(&line[6])))
@@ -47,6 +48,7 @@ int	get_map_size(t_filler *filler)
 	error = 1;
 	line = NULL;
 	get_next_line(0, &line);
+	ft_dprintf(2, "%s\n", line);
 	filler->m_features = ft_strdup(line);
 	if (ft_strncmp(line, "Plateau ", 8))
 		error = 0;
@@ -81,6 +83,7 @@ int	get_player_number(t_filler *filler)
 	error = 1;
 	line = NULL;
 	get_next_line(0, &line);
+	ft_dprintf(2, "%s\n", line);
 	if (ft_strncmp(line, "$$$ exec p", 10))
 		error = 0;
 	if (line[12] != ':')

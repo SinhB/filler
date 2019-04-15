@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 17:35:19 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:31:19 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	start(t_filler *filler)
 	init_map(filler);
 	while (end)
 	{
-		ft_dprintf(2, "parse map..\n");
+	//	ft_dprintf(2, "parse map..\n");
 		if (!parse_map(filler))
 			break;
-		ft_dprintf(2, "parse piece..\n");
+	//	ft_dprintf(2, "parse piece..\n");
 		if (!parse_piece(filler))
 			break;
-		ft_dprintf(2, "algo ..\n");
+	//	ft_dprintf(2, "algo ..\n");
 		end = algo(filler);
-		ft_dprintf(2, "algo done\n");
+	//	ft_dprintf(2, "algo done\n");
 	}
 	free_struct(filler);
 	return (1);
