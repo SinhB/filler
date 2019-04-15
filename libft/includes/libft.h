@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:20:26 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 01:25:51 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:20:38 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/uio.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+# define ABS(x) (((x) < 0) ? -(x) : (x))
 
 typedef struct			s_list
 {

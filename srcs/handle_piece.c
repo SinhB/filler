@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 20:27:09 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/14 02:08:28 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:50:51 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,22 @@ int		fill_piece(t_filler *filler)
 	int		i;
 
 	i = 0;
+	line = NULL;
 	while (i < filler->piece.height)
 	{
+		line = NULL;
 		get_next_line(0, &line);
 		if (!check_p_line(filler, line))
+		{
+			free(line);
+			line = NULL;
 			return (0);
-		ft_strcpy(filler->piece.square[i], &*line);
-		if (line)
-			ft_memdel((void**)&line);
+		}
+		ft_strcpy(filler->piece.square[i], line);
 		i++;
 	}
+	free(line);
+	line = NULL;
 	return (1);
 }
 

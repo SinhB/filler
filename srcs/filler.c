@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/14 02:11:33 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:35:19 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 int	start(t_filler *filler)
 {
-	while(1)
+	int end;
+
+	end = 1;
+	if (!(get_map_size(filler)))
+		return (errors(filler, 1));
+	init_map(filler);
+	while (end)
 	{
+		ft_dprintf(2, "parse map..\n");
 		if (!parse_map(filler))
 			break;
-		ft_dprintf(2, "map done\n");
+		ft_dprintf(2, "parse piece..\n");
 		if (!parse_piece(filler))
 			break;
-		ft_dprintf(2, "piece done\n");
-		if (!algo(filler))
-			ft_dprintf(2, "fini!!!\n");
+		ft_dprintf(2, "algo ..\n");
+		end = algo(filler);
 		ft_dprintf(2, "algo done\n");
 	}
+	free_struct(filler);
 	return (1);
 }
 
@@ -37,6 +44,5 @@ int main(void)
 	if (!(get_player_number(&filler)))
 		return (errors(&filler, 0));
 	start(&filler);
-	free_struct(&filler);
 return (0);
 }

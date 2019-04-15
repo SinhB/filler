@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/14 02:25:52 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:22:16 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_piece_size(t_filler *filler)
 
 	i = 0;
 	error = 1;
-	line = (void *)0;
+	line = NULL;
 	get_next_line(0, &line);
 	if (ft_strncmp(line, "Piece ", 6))
 		error = 0;
@@ -32,7 +32,8 @@ int	get_piece_size(t_filler *filler)
 	i += ft_cntdigit(filler->piece.width);
 	if (line[6 + i] != ':')
 		error = 0;
-	ft_dprintf(2, "line : %s\n", line);
+	free(line);
+	line = NULL;
 	return (error);
 }
 
@@ -44,9 +45,8 @@ int	get_map_size(t_filler *filler)
 
 	i = 0;
 	error = 1;
-	line = (void *)0;
+	line = NULL;
 	get_next_line(0, &line);
-	ft_dprintf(2, "line : %s\n", line);
 	filler->m_features = ft_strdup(line);
 	if (ft_strncmp(line, "Plateau ", 8))
 		error = 0;
@@ -58,7 +58,8 @@ int	get_map_size(t_filler *filler)
 	i += ft_cntdigit(filler->map.width);
 	if (line[8 + i] != ':')
 		error = 0;
-	ft_memdel((void**)&line);
+	free(line);
+	line = NULL;
 	filler->size = filler->map.width * filler->map.height;
 	filler->point.min = filler->size;
 	return (error);
@@ -78,7 +79,7 @@ int	get_player_number(t_filler *filler)
 
 	i = 0;
 	error = 1;
-	line = (void *)0;
+	line = NULL;
 	get_next_line(0, &line);
 	if (ft_strncmp(line, "$$$ exec p", 10))
 		error = 0;
@@ -95,6 +96,7 @@ int	get_player_number(t_filler *filler)
 		line[10] == '1' ? p_nb(filler, 'O', 'X') : p_nb(filler, 'X', 'O');
 	else
 		error = 0;
-	ft_memdel((void**)&line);
+	free(line);
+	line = NULL;
 	return (error);
 }

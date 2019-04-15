@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 17:51:30 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/13 20:04:42 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:04:51 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,5 @@ int		init_map(t_filler *filler)
 		}
 		i++;
 	}
-	filler->init_m = 1;
 	return (1);
 }

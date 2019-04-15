@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 16:43:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/14 02:03:36 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:17:36 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	print_pos(t_filler *filler)
 	int y;
 
 	i = 0;
-	ft_dprintf(2, "piece.cnt :%d\n", filler->piece.cnt);
+//	ft_dprintf(2, "piece.cnt :%d\n", filler->piece.cnt);
 	while (i < filler->piece.cnt)
 	{
 		if (filler->piece.p[i].min <= filler->point.min)
@@ -42,10 +42,10 @@ int	print_pos(t_filler *filler)
 	}
 	x = filler->point.x - filler->piece.p[cnt].x;
 	y = filler->point.y - filler->piece.p[cnt].y;
-	ft_dprintf(2, "p.x :%d\n", filler->point.x);
-	ft_dprintf(2, "p.y :%d\n", filler->point.y);
-	ft_dprintf(2, "piece.p[%d].x :%d\n", cnt, filler->piece.p[cnt].x);
-	ft_dprintf(2, "piece.p[%d].y :%d\n", cnt, filler->piece.p[cnt].y);
+	// ft_dprintf(2, "p.x :%d\n", filler->point.x);
+	// ft_dprintf(2, "p.y :%d\n", filler->point.y);
+	// ft_dprintf(2, "piece.p[%d].x :%d\n", cnt, filler->piece.p[cnt].x);
+	// ft_dprintf(2, "piece.p[%d].y :%d\n", cnt, filler->piece.p[cnt].y);
 	ft_printf("%d %d\n", x, y);
 	return (1);
 }
@@ -134,8 +134,8 @@ int	algo(t_filler *filler)
 	t_point tracker;
 	int		end;
 
-	tracker.y = 0;
 	end = 0;
+	tracker.y = 0;
 	while (tracker.y < filler->map.height)
 	{
 		tracker.x = 0;
@@ -159,6 +159,5 @@ int	algo(t_filler *filler)
 	}
 	print_pos(filler);
 	free_piece(&filler->piece);
-	free_map(&filler->map);
 	return (end);
 }
