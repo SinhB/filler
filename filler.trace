@@ -1,7 +1,6 @@
-seed = 5182
-X: error on input
+seed = 7505
 O: error on input
-./yabecret.filler: Segfault at 27
-./yabecret.filler won
+./yabecret.filler: Segfault at 77
+players/hcao.filler won
 Score:
-27AGAINST0
+77AGAINST151

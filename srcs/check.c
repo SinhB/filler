@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 21:54:21 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/16 00:44:17 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int	is_good(t_filler *filler, int j, t_point *p, t_point *t)
 	int i;
 	int x1;
 	int y1;
-	int good;
 
 	i = 0;
-	good = 1;
 	while (i < filler->piece.cnt)
 	{
 		y1 = (filler->piece.p[i].y - p->y + t->y);
@@ -43,30 +41,27 @@ int	is_good(t_filler *filler, int j, t_point *p, t_point *t)
 			i++;
 		else
 		{
-
 			if ((y1 < 0) || (y1 > filler->map.height) || (x1 < 0) || (x1 > filler->map.width))
 				return (0);
 			if (filler->map.board[y1][x1] != '.')
-				good = 0;
+				return (0);
 			i++;
 		}
 	}
-	return (good);
+	return (1);
 }
 
 int	check_p_pos(t_filler *filler, t_point *tracker)
 {
 	int i;
 	t_point p;
-	int		good;
 
 	i = 0;
 	while (i < filler->piece.cnt)
 	{
 		p.x = filler->piece.p[i].x;
 		p.y = filler->piece.p[i].y;
-		good = is_good(filler, i, &p, tracker);
-		filler->piece.p[i].good = good ? 1 : 0;
+		filler->piece.p[i].good = is_good(filler, i, &p, tracker);
 		i++;
 	}
 	return (check_good(filler));
