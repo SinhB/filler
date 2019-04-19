@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 21:47:36 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:17:59 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,12 @@ void			*free_tab(char ***tab);
 void			free_piece(t_piece *piece);
 void			free_map(t_map *map);
 void			free_struct(t_filler *filler);
+
+/*
+**------------------------------------ PRINT -----------------------------------
+*/
+
+int				print_pos(t_filler *filler);
+
 
 #endif

@@ -6,33 +6,11 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:34:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 19:32:36 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/19 17:45:51 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-void	*free_tab(char ***tab)
-{
-	int i;
-
-	if (!(*tab))
-		return ((void *)0);
-	i = 0;
-	while ((*tab)[i])
-	{
-		if ((*tab)[i])
-		{
-			free((*tab)[i]);
-			(*tab)[i++] = (void *)0;
-		}
-		else
-			i++;
-	}
-	free(*tab);
-	*tab = (void *)0;
-	return ((void *)0);
-}
 
 void	free_map(t_map *map)
 {
@@ -65,5 +43,4 @@ void	free_struct(t_filler *filler)
 	free(filler->m_features);
 	free_map(&filler->map);
 	free_piece(&filler->piece);
-	free(filler);
 }

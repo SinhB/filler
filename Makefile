@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/13 20:39:14 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/19 16:13:41 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC_NAME 	=		filler.c							\
 					handle_piece.c						\
 					free.c								\
 					check.c								\
+					print_pos.c							\
 					algo.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

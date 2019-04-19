@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   print_pos.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 17:43:29 by yabecret         ###   ########.fr       */
+/*   Created: 2019/04/19 14:16:22 by yabecret          #+#    #+#             */
+/*   Updated: 2019/04/19 16:49:58 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	start(t_filler *filler)
+int	print_pos(t_filler *filler)
 {
-	int end;
+	int i;
+	int cnt;
+	int x;
+	int y;
 
-	end = 1;
-	if (!(get_map_size(filler)))
-		return (errors(filler, 1));
-	init_map(filler);
-	while (end)
+	i = 0;
+	while (i < filler->piece.cnt)
 	{
-		if (!parse_map(filler))
-			break;
-		if (!parse_piece(filler))
-			break;
-		end = algo(filler);
+		if (is_good(filler, i, &filler->piece.p[i], &filler->point))
+		{
+			if (filler->piece.p[i].min <= filler->point.min)
+				cnt = i;
+		}
+		i++;
 	}
+	x = filler->point.x - filler->piece.p[cnt].x;
+	y = filler->point.y - filler->piece.p[cnt].y;
+	ft_printf("%d %d\n", y, x);
 	return (1);
-}
-
-int main(void)
-{
-	t_filler filler;
-
-	ft_bzero(&filler, sizeof(filler));
-	if (!(get_player_number(&filler)))
-		return (errors(&filler, 0));
-	start(&filler);
-return (0);
 }

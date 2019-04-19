@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/16 00:44:17 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/19 16:50:58 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_good(t_filler *filler, int j, t_point *p, t_point *t)
 			i++;
 		else
 		{
-			if ((y1 < 0) || (y1 > filler->map.height) || (x1 < 0) || (x1 > filler->map.width))
+			if ((y1 < 0) || (y1 >= filler->map.height) || (x1 < 0) || (x1 >= filler->map.width))
 				return (0);
 			if (filler->map.board[y1][x1] != '.')
 				return (0);
