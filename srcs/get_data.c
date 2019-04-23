@@ -6,13 +6,13 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 16:52:56 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:31:24 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	get_piece_size(t_filler *filler)
+int		get_piece_size(t_filler *filler)
 {
 	char	*line;
 	int		i;
@@ -37,7 +37,7 @@ int	get_piece_size(t_filler *filler)
 	return (error);
 }
 
-int	get_map_size(t_filler *filler)
+int		get_map_size(t_filler *filler)
 {
 	char	*line;
 	int		i;
@@ -71,7 +71,7 @@ void	p_nb(t_filler *filler, char me, char ad)
 	filler->ad = ad;
 }
 
-int	get_player_number(t_filler *filler)
+int		get_player_number(t_filler *filler)
 {
 	char	*line;
 	int		i;
@@ -83,14 +83,12 @@ int	get_player_number(t_filler *filler)
 	get_next_line(0, &line);
 	if (ft_strncmp(line, "$$$ exec p", 10))
 		error = 0;
-	if (line[12] != ':')
-		error = 0;
 	if (line[14] == '[')
-		while(line[14 + i])
+		while (line[14 + i])
 			i++;
 	else
 		error = 0;
-	if (line[13 + i] != ']')
+	if (line[12] != ':' || line[13 + i] != ']')
 		error = 0;
 	if (line[10] == '1' || line[10] == '2')
 		line[10] == '1' ? p_nb(filler, 'O', 'X') : p_nb(filler, 'X', 'O');

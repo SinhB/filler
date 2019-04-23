@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 17:43:29 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:20:27 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	start(t_filler *filler)
 	while (end)
 	{
 		if (!parse_map(filler))
-			break;
+			break ;
 		if (!parse_piece(filler))
-			break;
+			break ;
 		end = algo(filler);
 	}
 	return (1);
 }
 
-int main(void)
+int	main(void)
 {
 	t_filler filler;
 
@@ -39,5 +39,5 @@ int main(void)
 	if (!(get_player_number(&filler)))
 		return (errors(&filler, 0));
 	start(&filler);
-return (0);
+	return (0);
 }

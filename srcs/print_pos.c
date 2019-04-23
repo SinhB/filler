@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:16:22 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 16:49:58 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:16:44 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	print_pos(t_filler *filler)
 	i = 0;
 	while (i < filler->piece.cnt)
 	{
-		if (is_good(filler, i, &filler->piece.p[i], &filler->point))
+		filler->piece.p[i].i = i;
+		if (is_good(filler, &filler->piece.p[i], &filler->point))
 		{
 			if (filler->piece.p[i].min <= filler->point.min)
 				cnt = i;

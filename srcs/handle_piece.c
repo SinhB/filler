@@ -6,13 +6,13 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 20:27:09 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 16:53:16 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:23:58 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	check_p_line(t_filler *filler, char *line)
+int		check_p_line(t_filler *filler, char *line)
 {
 	int i;
 
@@ -58,7 +58,7 @@ void	get_point_pos(t_filler *filler)
 
 int		fill_piece(t_filler *filler)
 {
-	char 	*line;
+	char	*line;
 	int		i;
 
 	i = 0;

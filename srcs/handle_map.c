@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:57:07 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 16:53:10 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:20:56 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	parse_m_features(t_filler *filler)
 	return (1);
 }
 
-int		fill_map(t_filler *filler)
+int	fill_map(t_filler *filler)
 {
 	char	*line;
 	int		i;

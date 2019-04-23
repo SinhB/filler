@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 17:51:30 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 17:04:51 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:22:59 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		init_piece(t_filler *filler)
 		j = 0;
 		while (j < filler->piece.width)
 		{
-			filler->piece.square[i] = (char*)palloc(sizeof(char) * filler->piece.width + 1);
+			filler->piece.square[i] = (char*)palloc(sizeof(char)
+			* filler->piece.width + 1);
 			ft_bzero(filler->piece.square[i], filler->piece.width);
 			j++;
 		}
@@ -45,7 +46,8 @@ int		init_map(t_filler *filler)
 		j = 0;
 		while (j < filler->map.width)
 		{
-			filler->map.board[i] = (char*)palloc(sizeof(char) * filler->map.width + 1);
+			filler->map.board[i] = (char*)palloc(sizeof(char)
+			* filler->map.width + 1);
 			ft_bzero(filler->map.board[i], filler->map.width);
 			j++;
 		}

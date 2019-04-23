@@ -6,20 +6,15 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/19 14:17:59 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:29:11 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
-#define FILLER_H
+# define FILLER_H
 
 # include "../libft/includes/libft.h"
 # include <math.h>
-
-# define P_X	01111000	// x
-# define P_O	01101111	// o
-# define G_X	01011000	// X
-# define G_O	01001111	// O
 
 typedef struct	s_point
 {
@@ -36,7 +31,7 @@ typedef struct	s_piece
 	int			height;
 	int			cnt;
 	t_point		*p;
-	char 		**square;
+	char		**square;
 }				t_piece;
 
 typedef struct	s_map
@@ -44,9 +39,8 @@ typedef struct	s_map
 	int			width;
 	int			height;
 	int			size;
-	char 		**board;
+	char		**board;
 }				t_map;
-
 
 typedef struct	s_filler
 {
@@ -122,12 +116,14 @@ int				errors(t_filler *filler, int i);
 int				check_features(t_filler *filler, char *line, int i);
 int				check_p_line(t_filler *filler, char *line);
 int				check_p_pos(t_filler *filler, t_point *tracker);
-int				is_good(t_filler *filler, int j, t_point *p, t_point *t);
+int				is_good(t_filler *filler, t_point *p, t_point *t);
+int				check_edge(t_filler *filler, t_point *p);
 
 /*
 **------------------------------------ FREE ------------------------------------
 */
 
+int				filler_end(t_filler *filler, int end);
 void			*free_tab(char ***tab);
 void			free_piece(t_piece *piece);
 void			free_map(t_map *map);
@@ -138,6 +134,5 @@ void			free_struct(t_filler *filler);
 */
 
 int				print_pos(t_filler *filler);
-
 
 #endif
