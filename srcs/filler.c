@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:50 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/23 18:20:27 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 17:55:41 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	start(t_filler *filler)
 	end = 1;
 	if (!(get_map_size(filler)))
 		return (errors(filler, 1));
+	filler->size = filler->map.width * filler->map.height;
+	filler->point.min = filler->size;
 	init_map(filler);
 	while (end)
 	{

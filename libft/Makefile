@@ -6,7 +6,7 @@
 #    By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/13 19:43:10 by yabecret          #+#    #+#              #
-#    Updated: 2019/04/11 01:05:11 by yabecret         ###   ########.fr        #
+#    Updated: 2019/04/24 11:51:23 by yabecret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC_NAME 	=	ft_atoi_base.c										\
 				ft_putstr.c											\
 				ft_putwchar_fd.c									\
 				ft_putwchar.c										\
+				ft_pow.c											\
 				ft_strfind.c										\
 				ft_sqrt.c											\
 				ft_str_is_alpha.c									\

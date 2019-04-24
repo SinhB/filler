@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 16:43:44 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/23 18:29:17 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:01:12 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ double	calc_min(t_filler *filler, t_point *t, t_point *p, t_point *ad)
 			i++;
 		else
 		{
-			res = pow((ad->x - (filler->piece.p[i].x - p->x + t->x)), 2);
-			res += pow((ad->y - (filler->piece.p[i].y - p->y + t->y)), 2);
-			res = sqrt(res);
+			res = ft_pow((ad->x - (filler->piece.p[i].x - p->x + t->x)), 2);
+			res += ft_pow((ad->y - (filler->piece.p[i].y - p->y + t->y)), 2);
+			res = ft_sqrt(res);
 			min = res < min ? res : min;
 			i++;
 		}

@@ -6,25 +6,58 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:57:07 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/23 18:20:56 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 18:10:27 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int	check_m_line(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != 'O' && str[i] != 'X' && str[i] != '.')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_first_m_line(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (i < 4 && str[i] != ' ')
+			return (0);
+		if (i > 4 && !ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	parse_m_features(t_filler *filler)
 {
 	char *line;
 
 	line = NULL;
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) != 1)
+	{
+		ft_memdel((void**)&line);
+		return (0);
+	}
 	if (ft_strcmp(filler->m_features, line))
 	{
 		ft_memdel((void**)&line);
 		return (0);
 	}
-	free(line);
-	line = NULL;
+	ft_memdel((void**)&line);
 	filler->point.min = filler->size;
 	return (1);
 }
@@ -38,13 +71,22 @@ int	fill_map(t_filler *filler)
 	while (i < filler->map.height)
 	{
 		line = NULL;
-		get_next_line(0, &line);
+		if (get_next_line(0, &line) != 1)
+		{
+			ft_memdel((void**)&line);
+			return (0);
+		}
 		while (ft_isdigit(*line) || ft_isblank(*line))
 			line++;
 		ft_strcpy(filler->map.board[i], line);
+		if (!check_m_line(filler->map.board[i]))
+		{
+			ft_memdel((void**)&line);
+			return (0);
+		}
 		i++;
 	}
-	line = NULL;
+	ft_memdel((void**)&line);
 	return (1);
 }
 
@@ -56,10 +98,19 @@ int	parse_map(t_filler *filler)
 	if (filler->init_m == 1)
 		if (!parse_m_features(filler))
 			return (errors(filler, 3));
-	get_next_line(0, &line);
-	free(line);
-	line = NULL;
-	fill_map(filler);
+	if ((get_next_line(0, &line) != 1))
+	{
+		ft_memdel((void**)&line);
+		return (0);
+	}
+	if (!check_first_m_line(line))
+	{
+		ft_memdel((void**)&line);
+		return (errors(filler, 6));
+	}
+	ft_memdel((void**)&line);
+	if (!fill_map(filler))
+		return (errors(filler, 5));
 	filler->init_m = 1;
 	return (1);
 }

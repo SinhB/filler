@@ -6,7 +6,7 @@
 /*   By: ybecret <ybecret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 22:35:51 by ybecret           #+#    #+#             */
-/*   Updated: 2019/04/13 01:25:27 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:49:10 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,4 @@ int		ft_max(intmax_t a, intmax_t b)
 int		ft_min(intmax_t a, intmax_t b)
 {
 	return (a > b ? b : a);
-}
-
-int		ft_pow(int nb, int pow)
-{
-	int res;
-
-	res = 1;
-	while (pow--)
-		res *= nb;
-	return (res);
 }

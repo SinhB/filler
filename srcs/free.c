@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:34:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/23 18:28:59 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 17:47:16 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ void	free_map(t_map *map)
 	int i;
 
 	i = 0;
-	while (i < map->height)
-		free(map->board[i++]);
-	free(map->board);
+	if (map->board != NULL)
+	{
+		while (i < map->height)
+			free(map->board[i++]);
+		free(map->board);
+	}
 	map->board = NULL;
 }
 
@@ -46,10 +49,14 @@ void	free_piece(t_piece *piece)
 	int i;
 
 	i = 0;
-	while (i < piece->height)
-		free(piece->square[i++]);
-	free(piece->square);
-	free(piece->p);
+	if (piece->square != NULL)
+	{
+		while (i < piece->height)
+			free(piece->square[i++]);
+		free(piece->square);
+	}
+	if (piece->p)
+		free(piece->p);
 	piece->p = NULL;
 	piece->square = NULL;
 	piece->cnt = 0;
@@ -59,7 +66,8 @@ void	free_piece(t_piece *piece)
 
 void	free_struct(t_filler *filler)
 {
-	free(filler->m_features);
 	free_map(&filler->map);
 	free_piece(&filler->piece);
+	if (filler->m_features)
+		free(filler->m_features);
 }

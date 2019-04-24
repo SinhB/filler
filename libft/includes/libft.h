@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:20:26 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/15 17:20:38 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:00:05 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int						ft_isblank(int c);
 int						ft_toupper(int c);
 int						ft_tolower(int c);
 int						ft_iswhitespace(int c);
-int						ft_sqrt(int nb);
+double					ft_sqrt(double nb);
+double					ft_pow(double nb, int pow);
 int						ft_str_is_alpha(char *str);
 int						ft_str_is_lowercase(char *str);
 int						ft_str_is_uppercase(char *str);
 int						ft_recursive_factorial(int nb);
-int						ft_pow(int nb, int pow);
 
 int						ft_atoi(const char *s);
 intmax_t				ft_atoll(char *s);
