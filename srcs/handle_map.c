@@ -6,23 +6,35 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:57:07 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 18:10:27 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/26 13:35:00 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	check_m_line(char *str)
+int	check_m_line(t_filler *filler, char *dest, char *str)
 {
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] != 'O' && str[i] != 'X' && str[i] != '.')
+		if (j >= filler->map.width)
 			return (0);
+		if ((i < 3 && !ft_isdigit(str[i])) || (i == 3 && str[i] != ' '))
+			return (0);
+		if (i > 3 && str[i] != 'O' && str[i] != 'X' && str[i] != '.')
+			return (0);
+		else if (i > 3)
+		{
+			dest[j] = str[i];
+			j++;
+		}
 		i++;
 	}
+	dest[j] = '\0';
 	return (1);
 }
 
@@ -76,10 +88,7 @@ int	fill_map(t_filler *filler)
 			ft_memdel((void**)&line);
 			return (0);
 		}
-		while (ft_isdigit(*line) || ft_isblank(*line))
-			line++;
-		ft_strcpy(filler->map.board[i], line);
-		if (!check_m_line(filler->map.board[i]))
+		if (!check_m_line(filler, filler->map.board[i], line))
 		{
 			ft_memdel((void**)&line);
 			return (0);

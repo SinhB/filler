@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 import sys
-from tkinter import *
+import os
+from Tkinter import *
 
 file = open("vlogs.txt", "w")
 debug = True
