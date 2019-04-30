@@ -93,6 +93,7 @@ int	fill_map(t_filler *filler)
 			ft_memdel((void**)&line);
 			return (0);
 		}
+		ft_memdel((void**)&line);
 		i++;
 	}
 	ft_memdel((void**)&line);

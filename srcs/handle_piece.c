@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 20:27:09 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 18:07:25 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/24 22:19:12 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		fill_piece(t_filler *filler)
 			return (0);
 		}
 		ft_strcpy(filler->piece.square[i], line);
+		ft_memdel((void**)&line);
 		i++;
 	}
 	ft_memdel((void**)&line);

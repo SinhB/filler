@@ -2,8 +2,8 @@
 
 import sys
 import os
-from Tkinter import *
-
+#from Tkinter import *
+import Tkinter as tk
 def close(event):
 	sys.exit()
 
@@ -18,11 +18,15 @@ def get_map(map, str, self):
 
 def start_game(pl1, pl2, mp, self, warn):
 	if not pl1 or not pl2 or not mp:
-		warn['text'] = 'Field empty'
+		warn['text'] = 'Empty field'
 	else:
-		warn['text'] = 'Lets kick it!'
 		cmd = "./filler_vm -f maps/"+mp+" -p1 players/"+pl1+" -p2 players/"+pl2+" | python visu.py"
 		os.system(cmd)
+		with open('filler.trace', 'r') as file:
+			line = file.read().split('\n')[1]
+		line = line.replace("players/", "")
+		line = line.replace(".filler", "")
+		warn['text'] = line
 
 class Menu:
 	def __init__(self):
@@ -52,9 +56,10 @@ class Menu:
 
 	def init_root(self):
 		self.root = Tk()
+		self.root.resizable(width=False, height=False)
 		self.root.configure(background= 'white')
 		self.root.title("Filler Menu")
-		self.root.geometry("650x300")
+		self.root.geometry("680x300")
 		self.root.bind('<Escape>', close)
 
 	def list1(self, name1):
@@ -88,4 +93,45 @@ class Menu:
 					l.append(file)
 		return l;
 
-Menu().menu()
+class Example(tk.Frame):
+    def __init__(self, parent):
+        tk.Frame.__init__(self, parent)
+        f1 = GradientFrame(self, borderwidth=1, relief="sunken")
+        f2 = GradientFrame(self, "green", "blue", borderwidth=1, relief="sunken")
+        f1.pack(side="top", fill="both", expand=True)
+        f2.pack(side="bottom", fill="both", expand=True)
+
+class GradientFrame(tk.Canvas):
+    '''A gradient frame which uses a canvas to draw the background'''
+    def __init__(self, parent, color1="red", color2="black", **kwargs):
+        tk.Canvas.__init__(self, parent, **kwargs)
+        self._color1 = color1
+        self._color2 = color2
+        self.bind("<Configure>", self._draw_gradient)
+
+    def _draw_gradient(self, event=None):
+        '''Draw the gradient'''
+        self.delete("gradient")
+        width = self.winfo_width()
+        height = self.winfo_height()
+        limit = width
+        (r1,g1,b1) = self.winfo_rgb(self._color1)
+        (r2,g2,b2) = self.winfo_rgb(self._color2)
+        r_ratio = float(r2-r1) / limit
+        g_ratio = float(g2-g1) / limit
+        b_ratio = float(b2-b1) / limit
+
+        for i in range(limit):
+            nr = int(r1 + (r_ratio * i))
+            ng = int(g1 + (g_ratio * i))
+            nb = int(b1 + (b_ratio * i))
+            color = "#%4.4x%4.4x%4.4x" % (nr,ng,nb)
+            self.create_line(i,0,i,height, tags=("gradient",), fill=color)
+        self.lower("gradient")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    Example(root).pack(fill="both", expand=True)
+    root.mainloop()
+
+#Menu().menu()
