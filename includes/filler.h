@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:53:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 17:46:15 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/05/10 13:02:42 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				algo(t_filler *filler);
 
 int				get_map_size(t_filler *filler);
 int				get_piece_size(t_filler *filler);
-int				get_player_number(t_filler *filler);
+int				get_player_number(t_filler *filler, int i);
 
 /*
 **------------------------------------ INIT ------------------------------------
@@ -122,6 +122,7 @@ int				check_edge(t_filler *filler, t_point *p);
 **------------------------------------ FREE ------------------------------------
 */
 
+int				free_index(t_filler *filler, int i, int j);
 int				filler_end(t_filler *filler, int end);
 void			*free_tab(char ***tab);
 void			free_piece(t_piece *piece);

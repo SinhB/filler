@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 20:27:09 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 22:19:12 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/05/10 15:52:35 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,13 @@ int		parse_piece(t_filler *filler)
 {
 	if (!get_piece_size(filler))
 		return (errors(filler, 2));
-	init_piece(filler);
+	if (!(init_piece(filler)))
+		return (errors(filler, 7));
 	if (!fill_piece(filler))
 		return (errors(filler, 4));
-	filler->piece.p = (t_point*)palloc(sizeof(t_point) * filler->piece.cnt);
+	if (!(filler->piece.p = (t_point*)malloc(sizeof(t_point) *
+		filler->piece.cnt)))
+		return (errors(filler, 7));
 	get_point_pos(filler);
 	return (1);
 }

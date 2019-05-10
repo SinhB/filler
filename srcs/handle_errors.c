@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 14:52:59 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 18:03:59 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/05/10 15:34:15 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	errors(t_filler *filler, int i)
 		ft_dprintf(2, "Map format error.\n");
 	if (i == 6)
 		ft_dprintf(2, "First map line error.\n");
-	if (i == 2 || i == 3 || i == 4 || i == 5 || i == 6)
-		free_struct(filler);
+	if (i == 7)
+		ft_dprintf(2, "Allocation error.\n");
+	free_struct(filler);
 	return (0);
 }

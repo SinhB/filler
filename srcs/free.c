@@ -6,11 +6,20 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:34:19 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 17:47:16 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/05/10 15:53:44 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int		free_index(t_filler *filler, int i, int j)
+{
+	if (j == 1)
+		filler->map.height = i;
+	else
+		filler->piece.height = i;
+	return (0);
+}
 
 int		filler_end(t_filler *filler, int end)
 {

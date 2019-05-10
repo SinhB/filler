@@ -6,7 +6,7 @@
 /*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 11:33:27 by yabecret          #+#    #+#             */
-/*   Updated: 2019/04/24 18:08:12 by yabecret         ###   ########.fr       */
+/*   Updated: 2019/04/29 19:32:37 by yabecret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,11 @@ void	p_nb(t_filler *filler, char me, char ad)
 	filler->ad = ad;
 }
 
-int		get_player_number(t_filler *filler)
+int		get_player_number(t_filler *filler, int i)
 {
 	char	*line;
-	int		i;
 	int		error;
 
-	i = 0;
 	error = 1;
 	line = NULL;
 	if (get_next_line(0, &line) != 1)
